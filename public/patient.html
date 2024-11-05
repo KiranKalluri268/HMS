@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Home </title>
+    <link rel="stylesheet" href="/css/patient.css">
+    <script defer src="js/patient.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> Patient Home</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="patient.html">Home</a></li>
+                    <li><a href="patient-prescription.html">Prescription</a></li>
+                    <li><a href="patient-profile.html">Profile</a></li>
+                    <li><a href="patient-feedback.html">Feedback</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="patient-home" class="main-section">
+            <h2>Select Hospital and Doctor</h2>
+            <form id="appointment-form">
+                <label for="hospital">Select Hospital:</label>
+                <select id="hospital" name="hospital" required>
+                    <option value="" disabled selected>Select a hospital</option>
+                </select>
+
+                <label for="doctor">Select Doctor:</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="" disabled selected>Select a doctor</option>
+                    <!-- Options will be populated based on hospital selection -->
+                </select>
+                <label for="reasonforappointment">Reason-for-Appointment:</label>
+                <input type="text" id="reasonforappointment" name="reason-for-appointment" required>
+                <label for="appointment-date">Select Appointment Date:</label>
+                <input type="date" id="appointment-date" name="appointment-date" required>
+                <label for="appointment-time">Select Appointment time:</label>
+                <input type="time" id="appointment-time" name="appointment-time" required>
+
+                <button type="submit">Book Appointment</button>
+            </form>
+
+            <p id="confirmation-message" style="display: none;"></p>
+        </section>
+        <section class="appointments-section">
+            <h2>Your Booked Appointments</h2>
+            <table id="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Hospital</th>
+                        <th>Doctor</th>
+                        <th>Specialty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample data; replace with dynamic data as needed -->
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

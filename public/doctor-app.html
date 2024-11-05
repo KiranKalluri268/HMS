@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointments </title>
+    <link rel="stylesheet" href="/css/doctor-app.css"> <!-- Link to CSS -->
+    <script defer src="/js/doctor-app.js"></script> <!-- Link to JavaScript -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Doctor's Appointments</h1>
+            <nav>
+                <ul class="nav-menu">
+
+                    <li><a href="doctor.html">Home</a></li>
+                    <li><a href="doctor-app.html">Appointments</a></li>
+                    <li><a href="doctor-patient-rec.html">Patient Records</a></li>
+                    <li><a href="doctor-profile.html">Profile</a></li>
+                    <li><a href="login.html">Logout</a></li>
+
+                </ul>
+            </nav>
+        </header>
+
+        <section class="main-section">
+            <h2>Your Upcoming Appointments</h2>
+            <table id="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</a></th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Reason for Visit</th>
+                    </tr>
+                </thead>
+                <tbody id="appointments-list">
+                    <!-- Dynamic content will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

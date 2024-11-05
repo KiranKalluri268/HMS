@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="hospital-title">Hospital Admin</title>
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Link to CSS -->
+    <script defer src="/js/hospital-admin.js"></script> <!-- Link to JavaScript -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span id="hospital-name-header"></span></h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="admin.html">Dashboard</a></li>
+                    
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+<!-- Doctors List -->
+        <section class="main-section">
+            <h2>Management Doctors</h2>
+            <div class="section">
+                <h3>List of Doctors</h3>
+                <table id="doctors-table">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Specialization</th>
+                            <th>Hospital</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="doctors-table-body">
+                        <!-- Dynamic content populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+<!-- Add Doctor Form -->
+<div class="section">
+    <h3>Add Doctor</h3>
+    <form id="add-doctor-form">
+        <div class="form-group">
+            <label for="name">Doctor Name:</label>
+            <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="doctor-password">Password:</label>
+            <input type="password" id="doctor-password" required>
+        </div>
+        <div class="form-group">
+            <label for="specialization">Specialization:</label>
+            <input type="text" id="specialization" required>
+        </div>
+
+        <!-- Hidden Hospital Name Input -->
+        <input type="hidden" id="hospital-id" value="">
+        
+        <button type="submit">Add Doctor</button>
+    </form>
+</div>
+</section>
+
+<footer>
+    <p>&copy; 2024 VITAREP. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

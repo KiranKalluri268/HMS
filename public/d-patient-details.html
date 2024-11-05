@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details - Doctor's View</title>
+    <link rel="stylesheet" href="css/d-patient-details.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Patient Details</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="doctor.html">Home</a></li>
+                    <li><a href="doctor-app.html">Appointments</a></li>
+                    <li><a href="doctor-patient-rec.html">Patients Records</a></li>
+                    <li><a href="doctor-profile.html">Profile</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="patient-details">
+            <h2>Patient Information</h2>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Age:</strong> 35</p>
+            <p><strong>Gender:</strong> Male</p>
+            <p><strong>Contact:</strong> johndoe@example.com</p>
+            <p><strong>Phone:</strong> +1234567890</p>
+            <p><strong>Medical History:</strong> Allergic to penicillin, diabetic</p>
+        </section>
+
+        <!-- Request Access to Previous Prescriptions Section -->
+        <section class="request-prescriptions-section">
+            <h2>Previous Prescriptions</h2>
+            <button id="request-access" onclick="requestPrescriptionAccess()">Request Access to Previous Prescriptions</button>
+
+            <!-- Display previous prescriptions once access is granted -->
+            <div id="prescriptions-list" class="hidden">
+                <h3>Previous Prescriptions:</h3>
+                <ul>
+                    <li><strong>Date:</strong> 2024-10-15 | <strong>Medicine:</strong> Ibuprofen | <strong>Dosage:</strong> 400mg twice daily</li>
+                    <li><strong>Date:</strong> 2024-09-20 | <strong>Medicine:</strong> Amoxicillin | <strong>Dosage:</strong> 500mg three times daily</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="prescription-section">
+            <h2>Issue Prescription</h2>
+            <form id="prescription-form">
+                
+                
+                <div class="form-group">
+                    <label for="notes">Additional Notes:</label>
+                    <textarea id="notes" rows="4" placeholder="Additional notes or instructions"></textarea>
+                </div>
+                
+                <button type="submit">Issue Prescription</button>
+            </form>
+        </section>
+
+        <section class="appointment-actions">
+            <button id="close-appointment" onclick="closeAppointment()">Close Appointment</button>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="doctor-patient-view.js"></script> <!-- Link to JavaScript -->
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile </title>
+    <link rel="stylesheet" href="css/doctor-profile.css"> <!-- Link to CSS -->
+   <!--  <script defer src="/js/profile.js"></script> Link to JavaScript -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Doctor Profile</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="doctor.html">Home</a></li>
+                    <li><a href="doctor-app.html">Appointments</a></li>
+                    <li><a href="doctor-patient-rec.html">Patient Records</a></li>
+                    <li><a href="doctor-profile.html">Profile</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="main-section">
+            <h2>Profile Information</h2>
+            <form id="doctor-profile-form">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" value="Dr. John Smith" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" value="john.smith@hospitalconnect.com" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" value="+1234567890" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="specialization">Specialization:</label>
+                    <input type="text" id="specialization" value="Cardiology" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Years of Experience:</label>
+                    <input type="number" id="experience" value="10" readonly>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" id="edit-btn">Edit Profile</button>
+                    <button type="submit" id="save-btn" style="display: none;">Save Changes</button>
+                </div>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

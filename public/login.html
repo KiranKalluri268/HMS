@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - VITAREP</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="container login-container">
+        <header>
+            <h1> Login</h1>
+        </header>
+
+        <section id="login">
+            <form id="login-form" action="/api/auth/login" method="POST">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <!-- Role Selection Dropdown -->
+                <label for="role">Login as:</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="patient">Patient</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="admin">Admin</option>
+                    <option value="hospital-admin">Hospital-Admin</option>
+                </select>
+
+                <button type="submit">Login</button>
+            </form>
+            <p><a href="forgot-password.html">Forgot Password?</a></p>
+            <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="/js/login.js"></script> <!-- Updated script reference -->
+</body>
+</html>

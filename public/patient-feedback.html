@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Feedback</title>
+    <link rel="stylesheet" href="css/patient-feedback.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Patient Feedback</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="patient.html">Home</a></li>
+                    <li><a href="patient-prescription.html">Prescriptions</a></li>
+                    <li><a href="patient-profile.html">Profile</a></li>
+                    <li><a href="patient-feedback.html">Feedback</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="feedback-section">
+            <h2>We value your feedback!</h2>
+            <p>Your feedback helps us improve our services and provide better care.</p>
+            
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback">Feedback:</label>
+                    <textarea id="feedback" rows="5" placeholder="Enter your feedback here..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rating">Rate our Service:</label>
+                    <select id="rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="5">Excellent</option>
+                        <option value="4">Very Good</option>
+                        <option value="3">Good</option>
+                        <option value="2">Fair</option>
+                        <option value="1">Poor</option>
+                    </select>
+                </div>
+                
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js/patient-feedback.js"></script> <!-- Link to JavaScript -->
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile </title>
+    <link rel="stylesheet" href="css/patient-profile.css"> <!-- Link to CSS -->
+    <script defer src="js/patient.js"></script> <!-- Link to JavaScript -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Patient Profile</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="patient.html">Home</a></li>
+                    <li><a href="patient-prescription.html">Prescription</a></li>
+                    <li><a href="patient-profile.html">profile</a></li>
+                    <li><a href="patient-feedback.html">Feedback</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="profile" class="main-section">
+            <h2>Edit Your Profile</h2>
+            <form id="profile-form">
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" required>
+
+                    <label for="last-name">Last Name:</label>
+                    <input type="text" id="last-name" name="last-name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Medical Details</legend>
+                    <label for="medical-history">Medical History:</label>
+                    <textarea id="medical-history" name="medical-history" rows="4" required></textarea>
+
+                    <label for="allergies">Allergies:</label>
+                    <textarea id="allergies" name="allergies" rows="2"></textarea>
+
+                    <label for="medications">Current Medications:</label>
+                    <textarea id="medications" name="medications" rows="2"></textarea>
+                </fieldset>
+
+                <button type="submit">Save Changes</button>
+            </form>
+
+            <p id="success-message" style="display: none;">Profile updated successfully!</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 VITAREP. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

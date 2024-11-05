@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard </title>
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Link to CSS -->
+    <script defer src="/js/admin.js"></script> <!-- Link to JavaScript -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="admin.html">Dashboard</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="main-section">
+            <h2>Hospitals and Doctors Management</h2>
+
+            <!-- Hospitals List -->
+            <div class="section">
+                <h3>List of Hospitals</h3>
+                <table id="hospitals-table">
+                    <thead>
+                        <tr>
+                            <th>Hospital Name</th>
+                            <th>Admin</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hospitals-list">
+                        <!-- Dynamic content populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Doctors List -->
+            <div class="section">
+                <h3>List of Doctors</h3>
+                <table id="doctors-table">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Specialization</th>
+                            <th>Hospital</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="doctors-list">
+                        <!-- Dynamic content populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add Hospital Form -->
+            <div class="section">
+                <h3>Add New Hospital</h3>
+                <form id="add-hospital-form">
+                    <div class="form-group">
+                        <label for="hospital-name">Hospital Name:</label>
+                        <input type="text" id="hospital-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="h_admin">Hospital Admin:</label>
+                        <input type="text" id="h_admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="h_email">Hospital Email:</label>
+                        <input type="email" id="h_email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="h_password">Admin Password:</label>
+                        <input type="password" id="h_password" required>
+                    </div>
+                    <button type="submit">Add Hospital</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Hospital Connect. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
