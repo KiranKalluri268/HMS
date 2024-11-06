@@ -107,9 +107,9 @@ router.post('/book-appointment', async (req, res) => {
 
 // Fetch appointments for a patient
 router.get('/appointments', async (req, res) => {
-    console.log(req.session.user);
+    console.log("fetching appointments,user:",req.session.user);
     try {
-        const appointments = await Appointment.find({ patient: req.session.user._id }) // Fetch appointments for the logged-in patient
+        const appointments = await Appointment.find({ patient: req.session.user.role_id }) // Fetch appointments for the logged-in patient
             .populate('hospital') // Adjust based on your schema
             .populate('doctor'); // Adjust based on your schema
         res.json(appointments);

@@ -12,7 +12,7 @@ router.get('/appointments', async (req, res) => {
             return res.status(401).json({ error: 'Unauthorized access,routes/doctor.js' });
         }
         const doctorId = req.session.doctorId;
-        const appointments = await Appointment.find({ doctor: doctorId });
+        const appointments = await Appointment.find({ doctor: doctorId }).populate('patient') ;
         console.log('fetched appoinment:',appointments);
         res.json(appointments);
     } catch (error) {
