@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             appointments.forEach(appointment => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${appointment.patient.name}</td>
+                    <td><a href="d-patient-details.html?patientId=${appointment.patient._id}">${appointment.patient.name}</a></td>
                     <td>${new Date(appointment.date).toLocaleDateString()}</td>
                     <td>${appointment.time}</td>
                     <td>${appointment.reason}</td>

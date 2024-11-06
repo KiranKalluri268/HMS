@@ -55,6 +55,9 @@ exports.addDoctor = async (req, res) => {
         hospital.doctors.push(newDoctor._id);
         await hospital.save();
 
+        // Fetch updated doctors list
+        const doctors = await Doctor.find({ hospital: hospitalId });
+
         res.status(201).json({ message: "Doctor added successfully", doctor: newDoctor });
     } catch (error) {
         console.error("Error adding doctor:", error);
@@ -62,15 +65,28 @@ exports.addDoctor = async (req, res) => {
     }
 };
 
-// Delete a doctor
+// deleteDoctor function
 exports.deleteDoctor = async (req, res) => {
     try {
         const doctorId = req.params.id;
-        await Doctor.findByIdAndDelete(doctorId);
-        res.json({ message: 'Doctor deleted successfully' });
+        const deletedDoctor = await Doctor.findByIdAndDelete(doctorId);
+
+        if (!deletedDoctor) {
+            return res.status(404).json({ error: "Doctor not found" });
+        }
+
+        // Remove doctor ID from the hospital's doctor list
+        await Hospital.findByIdAndUpdate(
+            deletedDoctor.hospital,
+            { $pull: { doctors: doctorId } }
+        );
+
+        // Fetch updated doctors list
+        const doctors = await Doctor.find({ hospital: deletedDoctor.hospital });
+
+        res.json({ message: 'Doctor deleted successfully', doctors });
     } catch (error) {
         console.error('Error deleting doctor:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
