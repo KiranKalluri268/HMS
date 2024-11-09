@@ -3,9 +3,6 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const User = require('../models/User'); // Ensure you have a User model
 const bcrypt = require('bcrypt'); // For password hashing
-const jwt = require('jsonwebtoken'); // For token generation
-
-
 
 // Route to handle user registration
 router.post('/register', async (req, res) => {
@@ -37,12 +34,19 @@ router.post('/register', async (req, res) => {
     }
 });
 
+// Route to handle user login
 router.post('/login', authController.login);
 
-// Route to handle logout (if needed)
+// Route to handle user logout
 router.post('/logout', (req, res) => {
-    // Clear the session or token if applicable
-    res.status(200).json({ message: 'Logged out successfully.' });
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: 'Logout failed. Please try again.' });
+        }
+        res.clearCookie('connect.sid');
+        res.status(200).json({ message: 'Logged out successfully' });
+        console.log("logout succesful")
+    });
 });
 
 module.exports = router;

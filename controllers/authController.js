@@ -6,6 +6,7 @@ const Hospital = require('../models/Hospital');
 exports.login = async (req, res) => {
     try {
         const { email, password, role } = req.body;  // Expecting role in login form data
+        console.log("login credentials:",req.body);
 
         // Find the user by email
         const user = await User.findOne({ email });
@@ -49,9 +50,8 @@ exports.login = async (req, res) => {
             role: user.role,
             role_id: user.role_id,
         };
-
         // Send success response
-        res.status(200).json({ message: "Login successful" });
+        res.status(200).json({ message: "Login successful" , user });
     } catch (error) {
         console.error("Error logging in:", error);
         res.status(500).json({ error: "Internal server error" });

@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+if (!user) {
+    // If no user is found in session storage, redirect to login
+    alert('Please log in first');
+    window.location.href = 'login.html';
+}
     async function fetchHospitalInfo() {
         try {
             const response = await fetch('/api/hospital-admin/hospital-info', {

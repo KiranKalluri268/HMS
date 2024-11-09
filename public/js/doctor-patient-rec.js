@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+    if (!user) {
+        // If no user is found in session storage, redirect to login
+        alert('Please log in first');
+        window.location.href = 'login.html';
+    }
     const recordsContainer = document.getElementById('records-container');
 
     // Sample data for appointments grouped by date

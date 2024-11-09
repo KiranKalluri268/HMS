@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("test");
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+if (!user) {
+    // If no user is found in session storage, redirect to login
+    alert('Please log in first');
+    window.location.href = 'login.html';
+}
     const editButton = document.getElementById('edit-btn');
     const saveButton = document.getElementById('save-btn');
     const profileForm = document.getElementById('doctor-profile-form');

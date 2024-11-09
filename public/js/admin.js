@@ -168,6 +168,13 @@ document.getElementById('add-hospital-form').addEventListener('submit', async (e
 
 // Call fetchHospitals when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
     fetchHospitals(); // This calls the hospital fetch function
     fetchDoctors();   // Add this to fetch doctors on page load
+    if (!user) {
+        // If no user is found in session storage, redirect to login
+        alert('Please log in first');
+        window.location.href = 'login.html';
+    }
 });

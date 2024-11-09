@@ -7,6 +7,7 @@ const User = require('../models/User');
 const Hospital = require('../models/Hospital');
 const Doctor = require('../models/Doctor');
 const Appointment = require('../models/Appointment');
+const Prescription = require('../models/Prescription');
 
 // Patient registration route
 router.post('/register', async (req, res) => {
@@ -116,6 +117,28 @@ router.get('/appointments', async (req, res) => {
     } catch (error) {
         console.error('Error fetching appointments:', error);
         res.status(500).json({ message: 'Error fetching appointments.' });
+    }
+});
+
+// Fetch patient details by ID
+router.get('/details/:id', async (req, res) => {
+    try {
+        const patient = await Patient.findById(req.params.id);
+        res.json(patient);
+    } catch (error) {
+        console.error('Error fetching patient details:', error);
+        res.status(500).json({ error: 'Error fetching patient details' });
+    }
+});
+
+// Fetch patient prescriptions by patient ID
+router.get('/prescriptions/:id', async (req, res) => {
+    try {
+        const prescriptions = await Prescription.find({ patient: req.params.id }).populate('doctor').populate('patient');
+        res.json(prescriptions);
+    } catch (error) {
+        console.error('Error fetching prescriptions:', error);
+        res.status(500).json({ error: 'Error fetching prescriptions' });
     }
 });
 

@@ -5,8 +5,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const hospitalAdminRoutes = require('./routes/hospital-admin');
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -15,27 +17,38 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Session middleware
-app.use(session({
-  secret: 'karthik_the_bot_of_bots', // Change to your secret key
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // Set secure: true only if using HTTPS
-}));
-
-// Define routes after setting up middleware
-app.use('/api/hospital-admin', hospitalAdminRoutes);
-
-// CORS middleware
+// CORS middleware to allow requests from the frontend
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000', // Update this if your frontend runs on a different port
     credentials: true,
 }));
 
-// Serve static files
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+}).then(() => console.log('MongoDB connected successfully'))
+  .catch(error => console.log('Error connecting to MongoDB:', error));
+
+// Session middleware with MongoDB store
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'karthik_the_bot_of_bots', // Use environment variable for the secret key
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        collectionName: 'sessions',
+        ttl: 24 * 60 * 60 // 1 day expiration
+    }),
+    cookie: {
+        httpOnly: true, // Helps mitigate XSS attacks
+        secure: false, // Set to true if using HTTPS
+        maxAge: 24 * 60 * 60 * 1000 // 1 day in milliseconds
+    }
+}));
+
+// Serve static files from the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Import Routes
+// Import routes
 const hospitalRoutes = require('./routes/hospital');
 const patientRoutes = require('./routes/patient');
 const appointmentRoutes = require('./routes/appointment');
@@ -43,27 +56,33 @@ const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
 const doctorRoutes = require('./routes/doctor');
 
-
-// Use Routes
+// Define API routes
+app.use('/api/hospital-admin', hospitalAdminRoutes);
 app.use('/api/patient', patientRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('./routes/hospital', hospitalRoutes);
+app.use('/api/hospital', hospitalRoutes); // Fixed the route definition
 app.use('/api/doctor', doctorRoutes);
-
 
 // Home route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {}).then(() => console.log('MongoDB connected successfully'))
-  .catch(error => console.log('Error connecting to MongoDB:', error));
+// Logout route
+app.get('/api/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: 'Logout failed' });
+        }
+        res.clearCookie('connect.sid');
+        res.json({ message: 'Logged out successfully' });
+    });
+});
 
 // Start server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+
+    if (!user) {
+        // If no user is found in session storage, redirect to login
+        alert('Please log in first');
+        window.location.href = 'login.html';
+    }
     const uploadBtn = document.getElementById('upload-btn');
     const prescriptionForm = document.getElementById('prescription-form');
     const fileList = document.getElementById('file-list');
