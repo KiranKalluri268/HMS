@@ -1,24 +1,25 @@
-document.getElementById('feedback-form').addEventListener('submit', function(event) {
+document.getElementById('feedback-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-    const user = JSON.parse(sessionStorage.getItem('user'));
 
-    if (!user) {
-        // If no user is found in session storage, redirect to login
-        alert('Please log in first');
-        window.location.href = 'login.html';
-    }
-    
     const feedback = document.getElementById('feedback').value;
     const rating = document.getElementById('rating').value;
-    
-    if (feedback && rating) {
-        alert("Thank you for your feedback!");
-        
-        // Reset form fields
-        document.getElementById('feedback-form').reset();
 
-        // Here, you could also add code to send the feedback to a server
-    } else {
-        alert("Please fill out all fields.");
+    try {
+        const response = await fetch('/api/feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ feedback, rating }),
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            alert('Feedback submitted successfully!');
+            window.location.reload();
+        } else {
+            throw new Error('Failed to submit feedback');
+        }
+    } catch (error) {
+        console.error('Error submitting feedback:', error);
+        alert('Error submitting feedback. Please try again.');
     }
 });
