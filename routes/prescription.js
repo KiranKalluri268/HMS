@@ -7,6 +7,7 @@ const Prescription = require('../models/Prescription');
 router.post('/add', async (req, res) => {
     try {
         const { patientId, doctorId, notes } = req.body;
+        console.log("req.body",req.body);
 
         const newPrescription = new Prescription({
             patient: patientId,

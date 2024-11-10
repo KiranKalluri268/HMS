@@ -6,35 +6,29 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Please log in first');
         window.location.href = 'login.html';
     }
-    const uploadBtn = document.getElementById('upload-btn');
-    const prescriptionForm = document.getElementById('prescription-form');
-    const fileList = document.getElementById('file-list');
-
-    // Show the form when the "Upload Prescription" button is clicked
-    uploadBtn.addEventListener('click', function () {
-        prescriptionForm.classList.toggle('hidden');
-    });
-
-    // Handle form submission and file upload
-    prescriptionForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
-
-        const prescriptionName = document.getElementById('prescription-name').value;
-        const prescriptionFile = document.getElementById('prescription-file').files[0];
-
-        // Validate file presence
-        if (!prescriptionFile) {
-            alert('Please upload a valid file.');
-            return;
-        }
-
-        // Add the uploaded file to the list in the folder
-        const listItem = document.createElement('li');
-        listItem.textContent = `${prescriptionName} - ${prescriptionFile.name}`;
-        fileList.appendChild(listItem);
-
-        // Reset the form and hide it again
-        prescriptionForm.reset();
-        prescriptionForm.classList.add('hidden');
-    });
+    fetchPatientPrescriptions();
 });
+const user = JSON.parse(sessionStorage.getItem('user'));
+const patientId = user.role_id;
+console.log(user.role_id);
+async function fetchPatientPrescriptions(patientId) {
+    console.log("fetching prescriptions of:",user);
+    try {
+        const patientId = user.role_id;
+        console.log("fetching presceiptionss of 2:",patientId);
+        const response = await fetch(`/api/patient/prescriptions/${patientId}`, { method: 'GET', credentials: 'include' });
+        if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+        
+        const prescriptions = await response.json();
+        const prescriptionsList = document.getElementById('prescriptions-list');
+        prescriptionsList.innerHTML = '';
+        prescriptions.forEach(prescription => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>Date:</strong> ${new Date(prescription.date).toLocaleDateString()} | <strong>Notes:</strong> ${prescription.notes}`;
+            prescriptionsList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error fetching prescriptions:', error);
+    }
+}
+

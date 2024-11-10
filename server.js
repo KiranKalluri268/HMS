@@ -55,6 +55,7 @@ const appointmentRoutes = require('./routes/appointment');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
 const doctorRoutes = require('./routes/doctor');
+const prescriptionRoutes = require('./routes/prescription');
 
 // Define API routes
 app.use('/api/hospital-admin', hospitalAdminRoutes);
@@ -64,6 +65,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/hospital', hospitalRoutes); // Fixed the route definition
 app.use('/api/doctor', doctorRoutes);
+app.use('/api/prescription', prescriptionRoutes);
 
 // Home route
 app.get('/', (req, res) => {

@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const patientId = urlParams.get('patientId');
 
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    console.log("user logged in:",user);
+
+    if (!user) {
+        // If no user is found in session storage, redirect to login
+        alert('Please log in first');
+        window.location.href = 'login.html';
+    }
+
     if (patientId) {
         await fetchPatientDetails(patientId);
         await fetchPatientPrescriptions(patientId);
@@ -11,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         e.preventDefault();
         await issuePrescription(patientId);
     });
-});
 
 async function fetchPatientDetails(patientId) {
     try {
@@ -72,3 +80,4 @@ async function issuePrescription(patientId) {
         alert('Failed to issue prescription');
     }
 }
+});

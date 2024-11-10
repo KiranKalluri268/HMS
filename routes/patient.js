@@ -134,7 +134,9 @@ router.get('/details/:id', async (req, res) => {
 // Fetch patient prescriptions by patient ID
 router.get('/prescriptions/:id', async (req, res) => {
     try {
+        console.log("prescriptions of patient:",req.params.id);
         const prescriptions = await Prescription.find({ patient: req.params.id }).populate('doctor').populate('patient');
+        console.log("found prescriptions:",prescriptions);
         res.json(prescriptions);
     } catch (error) {
         console.error('Error fetching prescriptions:', error);
