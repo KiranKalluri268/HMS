@@ -25,6 +25,7 @@ const hospitalSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    services: { type: [String] }, // Optional: List of services provided
     admin_id: { // New field for hospital admin
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', // Reference to the User model if applicable
