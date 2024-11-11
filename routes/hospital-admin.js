@@ -22,7 +22,7 @@ router.get('/hospital-info', (req, res, next) => {
 router.post('/add-doctor', doctorController.addDoctor);
 
 // Route to get doctors by hospital ID
-router.get('/doctors/:hospitalId',  authMiddleware, doctorController.getDoctorsByHospital);
+router.get('/doctors/:hospitalId', doctorController.getDoctorsByHospital);
 
 // Route to delete a doctor by ID
 router.delete('/doctors/:id', async (req, res) => {

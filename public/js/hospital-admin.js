@@ -40,6 +40,7 @@ if (!user) {
     
     // Call this function after logging in successfully
     fetchHospitalInfo();
+    fetchDoctorsByHospital();
     
     // Function to fetch and display doctors in the table
     async function fetchDoctorsByHospital(hospitalId) {
@@ -57,6 +58,7 @@ if (!user) {
             }
     
             const doctors = await response.json();
+            console.log('doctors fetched:',doctors);
             const doctorsTableBody = document.getElementById('doctors-table-body');
             doctorsTableBody.innerHTML = ''; // Clear existing rows
 
