@@ -30,6 +30,7 @@ const doctorSchema = new mongoose.Schema({
         default: 'doctor', // Default to 'doctor' for this model
         required: true,
     },
+    experience: Number,
 }, { timestamps: true });
 
 module.exports = mongoose.models.Doctor || mongoose.model('Doctor', doctorSchema);

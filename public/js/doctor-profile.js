@@ -1,34 +1,62 @@
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("test");
-    const user = JSON.parse(sessionStorage.getItem('user'));
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Fetch the doctor's profile from the server
+        const response = await fetch('/api/doctor/profile');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load profile');
+        }
+        
+        const doctorProfile = await response.json();
+        
+        // Populate the form with doctor profile data
+        document.getElementById('name').value = doctorProfile.name;
+        document.getElementById('email').value = doctorProfile.email;
+        document.getElementById('phone').value = doctorProfile.phone;
+        document.getElementById('specialization').value = doctorProfile.specialization;
+        document.getElementById('experience').value = doctorProfile.experience;
 
-if (!user) {
-    // If no user is found in session storage, redirect to login
-    alert('Please log in first');
-    window.location.href = 'login.html';
-}
-    const editButton = document.getElementById('edit-btn');
-    const saveButton = document.getElementById('save-btn');
-    const profileForm = document.getElementById('doctor-profile-form');
-    const inputs = profileForm.querySelectorAll('input');
+        // Edit button logic
+        document.getElementById('edit-btn').addEventListener('click', () => {
+            document.getElementById('name').readOnly = false;
+            document.getElementById('email').readOnly = false;
+            document.getElementById('phone').readOnly = false;
+            document.getElementById('specialization').readOnly = false;
+            document.getElementById('experience').readOnly = false;
+            document.getElementById('save-btn').style.display = 'inline-block';
+            document.getElementById('edit-btn').style.display = 'none';
+        });
 
-    // Toggle edit mode
-    editButton.addEventListener('click', function () {
-        inputs.forEach(input => input.removeAttribute('readonly'));
-        saveButton.style.display = 'inline-block';
-        editButton.style.display = 'none';
-    });
+        // Save button logic
+        document.getElementById('doctor-profile-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const updatedProfile = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                specialization: document.getElementById('specialization').value,
+                experience: document.getElementById('experience').value,
+            };
 
-    // Save changes
-    profileForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+            // Send the updated profile to the server
+            const updateResponse = await fetch('/api/doctor/profile', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedProfile),
+            });
 
-        // Here you would typically send data to the backend
-        alert('Changes saved successfully!');
-
-        // Set inputs back to readonly and toggle buttons
-        inputs.forEach(input => input.setAttribute('readonly', true));
-        saveButton.style.display = 'none';
-        editButton.style.display = 'inline-block';
-    });
+            if (updateResponse.ok) {
+                alert('Profile updated successfully');
+                location.reload(); // Reload the page to show updated data
+            } else {
+                alert('Error updating profile');
+            }
+        });
+    } catch (error) {
+        console.error('Error loading profile:', error);
+        alert('Error loading profile');
+    }
 });
