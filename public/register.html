@@ -10,16 +10,32 @@
 <body>
     <div class="container login-container">
         <header>
-            <h1> Patient Registration</h1>
+            <h1>Patient Registration</h1>
         </header>
 
         <section id="register">
+            <!-- OAuth Registration Option -->
+            <!-- <div class="oauth-container">
+                <button onclick="window.location.href='/auth/google'" class="oauth-button">Register with Google</button>
+            </div> -->
+            <hr>
+
+            <!-- Patient Registration Form -->
             <form id="register-form" action="/api/patients/register" method="POST">
                 <label for="fullname">Full Name:</label>
                 <input type="text" id="fullname" name="fullname" required>
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+
+                <!-- OTP Button -->
+                <button type="button" id="send-otp" >Send OTP</button>
+
+                <!-- OTP Verification Field -->
+                <div id="otp-section" style="display: none;">
+                    <label for="otp">Enter OTP:</label>
+                    <input type="text" id="otp" name="otp" required placeholder="Enter the OTP">
+                </div>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required minlength="6">
@@ -46,6 +62,7 @@
 
                 <button type="submit">Register</button>
             </form>
+
             <p>Already have an account? <a href="login.html">Login here</a>.</p>
         </section>
 

@@ -2,7 +2,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt'); // For password hashing
 const router = express.Router();
-const Patient = require('../models/patient'); // Adjust the path if needed
+const Patient = require('../models/Patient'); // Adjust the path if needed
 const User = require('../models/User');
 const Hospital = require('../models/Hospital');
 const Doctor = require('../models/Doctor');

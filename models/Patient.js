@@ -31,6 +31,9 @@ const patientSchema = new mongoose.Schema({
         type: String,
         required: true, // Ensure this field is required
     },
+    googleId: String,
+    otp: String,
+    isVerified: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.models.Patient || mongoose.model('Patient', patientSchema);
