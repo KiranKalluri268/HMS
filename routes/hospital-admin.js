@@ -8,6 +8,7 @@ const Hospital = require('../models/Hospital');
 const User = require('../models/User');
 const Doctor = require('../models/Doctor');
 const hospitalController = require('../controllers/hospitalController');
+const { getHospitalInfo } = require('../controllers/hospitalController');
 const authMiddleware = require('../middleware/authMiddleware');
 
 
@@ -15,7 +16,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.get('/hospital-info', (req, res, next) => {
     console.log('Received request for hospital info in hospital-admin.js');
     next();
-}, authMiddleware, hospitalController.getHospitalInfo);
+}, getHospitalInfo);
 
 // Route to add a new doctor
 router.post('/add-doctor', doctorController.addDoctor);

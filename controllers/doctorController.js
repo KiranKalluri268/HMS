@@ -26,6 +26,7 @@ exports.addDoctor = async (req, res) => {
 
         // Hash the doctor's password
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log('controller',hospitalId);
 
         // Create a new doctor
         const newDoctor = await Doctor.create({
