@@ -1,7 +1,7 @@
 const Hospital = require('../models/Hospital');
 const User = require('../models/User');
 const Doctor = require('../models/Doctor'); // Doctor model import
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcryptjs'); 
 const mongoose = require('mongoose');
 
 exports.getHospitalInfo = async (req, res) => {

@@ -2,7 +2,7 @@
 const Doctor = require('../models/Doctor'); // Ensure the path is correct
 const Hospital = require('../models/Hospital');
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Fetch doctors for a specific hospital
 exports.getDoctorsByHospital = async (req, res) => {
