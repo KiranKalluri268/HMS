@@ -14,7 +14,19 @@
     display: flex;
     flex-direction: column;
 }
+.logo {
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fills the circular frame */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a dome shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
 
+.logo:hover {
+    transform: scale(1.1); /* Enlarges the logo slightly on hover */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Increases shadow on hover */
+}
 #login-form label {
     margin-bottom: 8px;
     text-align: left;
